@@ -3,14 +3,11 @@
 A new Flutter project.
 
 ## Getting Started
+Como programo apenas iOS e Android nativos a uns 8 anos, achei que ja estava na hora de conhecer
+uma tecnologia hibrida.
 
-This project is a starting point for a Flutter application.
+Usei esse estudo para ter noções da estrutura do Flutter, conceitos de estados entre outros.
 
-A few resources to get you started if this is your first Flutter project:
+Usei como base de estudos o curso da Coder e documentações do site do próprio Flutter.
+Usei também vídeo do youtube como o canais do Flutterando e o próprio do Flutter.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
