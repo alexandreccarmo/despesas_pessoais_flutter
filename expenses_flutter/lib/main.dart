@@ -1,32 +1,52 @@
-import 'package:expenses_flutter/components/transaction_list.dart';
-import 'package:expenses_flutter/components/transction_form.dart';
-import 'package:expenses_flutter/models/transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:expenses_flutter/components/transaction_list.dart';
-import 'package:expenses_flutter/components/transction_form.dart';
-import 'models/transaction.dart';
 import 'dart:math';
+import 'components/transaction_list.dart';
+import 'components/transction_form.dart';
+import 'models/transaction.dart';
 
-main() => runApp(const ExpensesApp());
+main() => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
-  const ExpensesApp({super.key});
+  ExpensesApp({super.key});
+  final ThemeData tema = ThemeData();
 
   @override
-  Widget build(BuildContext context){
-    return  MaterialApp(home: MyHomePage());
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const MyHomePage(),
+      theme: tema.copyWith(
+        colorScheme: tema.colorScheme.copyWith(
+          primary: Colors.purple,
+          secondary: Colors.amber,
+        ),
+        textTheme: tema.textTheme.copyWith(
+          titleLarge: const TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key});
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final _transactions = [
     Transaction(
       id: 't1',
@@ -44,11 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
-        id: Random().nextDouble().toString(),
-        title: title,
-        value: value,
-        date: DateTime.now()
+      id: Random().nextDouble().toString(),
+      title: title,
+      value: value,
+      date: DateTime.now(),
     );
+
     setState(() {
       _transactions.add(newTransaction);
     });
@@ -56,23 +77,23 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
-  _openTransactionFormModal(BuildContext context){
+  _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return TransactionForm(_addTransaction);
-        }
+      context: context,
+      builder: (_) {
+        return TransactionForm(_addTransaction);
+      },
     );
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Despesas Pessoais'),
         actions: [
           IconButton(
-              icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () => _openTransactionFormModal(context),
           ),
         ],
@@ -81,9 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              width: double.infinity,
-              child: const Card(
+            const SizedBox(
+              child: Card(
                 color: Colors.blue,
                 child: Text('Gráfico'),
                 elevation: 5,
@@ -94,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () => _openTransactionFormModal(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
