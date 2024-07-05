@@ -13,7 +13,6 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const MyHomePage(),
       theme: tema.copyWith(
         colorScheme: tema.colorScheme.copyWith(
           primary: Colors.purple,
@@ -35,6 +34,7 @@ class ExpensesApp extends StatelessWidget {
           ),
         ),
       ),
+      home: MyHomePage(),
     );
   }
 }
