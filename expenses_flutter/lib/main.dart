@@ -9,29 +9,30 @@ main() => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
   ExpensesApp({super.key});
-  final ThemeData tema = ThemeData();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: tema.copyWith(
-        colorScheme: tema.colorScheme.copyWith(
-          primary: Colors.purple,
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        fontFamily: 'OpenSans',
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple,).copyWith(
           secondary: Colors.amber,
         ),
-        textTheme: tema.textTheme.copyWith(
+        textTheme: ThemeData.light().textTheme.copyWith(
           titleLarge: const TextStyle(
-            fontFamily: 'OpenSans',
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
-          labelLarge: TextStyle(
+          labelLarge: const TextStyle(
+            fontFamily: 'OpenSans',
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
         appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.purple,
           titleTextStyle: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 20,
@@ -39,7 +40,7 @@ class ExpensesApp extends StatelessWidget {
           ),
         ),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -98,7 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Despesas Pessoais'),
+        title: const Text(
+          'Despesas Pessoais',
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -116,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         child: const Icon(Icons.add),
         onPressed: () => _openTransactionFormModal(context),
       ),

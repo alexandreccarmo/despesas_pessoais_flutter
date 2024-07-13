@@ -95,12 +95,10 @@ class _TransactionFormState extends State<TransactionForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 ElevatedButton(
-                  child: Text(
-                    'Nova Transação',
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.labelLarge?.color,
-                    ),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white, backgroundColor: Colors.amber, // Cor do texto
                   ),
+                  child: const Text('Nova Transação'),
                   onPressed: _submitForm,
                 ),
               ],
