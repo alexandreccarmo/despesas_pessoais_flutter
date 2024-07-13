@@ -21,7 +21,7 @@ class TransactionList extends StatelessWidget {
             'Nenhuma transação cadastrada',
             style: Theme.of(context).textTheme.titleSmall,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             height: 200,
             child: Image.asset(
@@ -36,7 +36,7 @@ class TransactionList extends StatelessWidget {
           final tr = transactions[index];
           return Card(
             elevation: 5,
-            margin: EdgeInsets.symmetric(
+            margin: const EdgeInsets.symmetric(
               vertical: 8,
               horizontal: 5,
             ),

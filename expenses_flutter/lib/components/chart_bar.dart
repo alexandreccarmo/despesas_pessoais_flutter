@@ -20,7 +20,7 @@ class ChartBar extends StatelessWidget{
               child: Text('${value.toStringAsFixed(2)}')
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Container(
           height: 60,
           width: 10,
@@ -49,7 +49,7 @@ class ChartBar extends StatelessWidget{
             ],
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text(label),
       ],
     );
