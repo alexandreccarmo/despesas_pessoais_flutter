@@ -1,5 +1,6 @@
 import 'package:expenses_flutter/components/chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:math';
 import 'components/transaction_list.dart';
 import 'components/transction_form.dart';
@@ -12,6 +13,7 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.purple,
@@ -97,24 +99,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Despesas Pessoais',
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => _openTransactionFormModal(context),
-          ),
-        ],
+    final appBar = AppBar(
+      title: const Text(
+        'Despesas Pessoais',
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: () => _openTransactionFormModal(context),
+        ),
+      ],
+    );
+
+    final avalibleHeight = MediaQuery.of(context).size.height - appBar.preferredSize.height - MediaQuery.of(context).padding.top;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Chart(_recentTransanctions),
-            TransactionList(_transactions, _removeTransaction),
+            Container(
+              child: Chart(_recentTransanctions),
+              height: avalibleHeight * 0.25,
+            ),
+            Container(
+              child: TransactionList(_transactions, _removeTransaction),
+              height: avalibleHeight * 0.75,
+            ),
           ],
         ),
       ),
