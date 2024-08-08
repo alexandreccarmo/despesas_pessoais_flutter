@@ -100,6 +100,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    bool isLandScape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     final appBar = AppBar(
       title: const Text(
         'Despesas Pessoais',
@@ -108,6 +111,15 @@ class _MyHomePageState extends State<MyHomePage> {
         IconButton(
           icon: const Icon(Icons.add),
           onPressed: () => _openTransactionFormModal(context),
+        ),
+        if(isLandScape)
+        IconButton(
+          icon: Icon(_showChart ? Icons.list : Icons.show_chart),
+          onPressed: () {
+            setState(() {
+              _showChart = !_showChart;
+            });
+          },
         ),
       ],
     );
@@ -120,30 +132,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Exibir Gráfico',
-                ),
-                Switch(
-                    value: _showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                }),
-              ],
-            ),
-            if(_showChart)
+            if(_showChart || !isLandScape)
               Container(
               child: Chart(_recentTransanctions),
-              height: avalibleHeight * 0.25,
+              height: avalibleHeight * (isLandScape ? 0.7 : 0.3),
             ),
-            if(!_showChart)
+            if(!_showChart || !isLandScape)
               Container(
               child: TransactionList(_transactions, _removeTransaction),
-              height: avalibleHeight * 0.75,
+              height: avalibleHeight * 0.70,
             ),
           ],
         ),
